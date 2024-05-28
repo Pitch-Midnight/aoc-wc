@@ -1,7 +1,29 @@
 <?php
 function aoc_wc_calculate_addition_costs_on_order( $somecosts ) {
+
+	if ( AOC_WC_DEBUG || WP_DEBUG ) {
+		AOC_WC_Logger::add_debug( "summing aoc costs for external plugin" );
+		AOC_WC_Logger::add_debug( wc_print_r( $somecosts, true ) );
+	}
+	if ( gettype( $somecosts ) == 'string' ) {
+
+		if ( AOC_WC_DEBUG || WP_DEBUG ) {
+			AOC_WC_Logger::add_debug( "its a string" );
+		}
+		$somecosts = json_decode( $somecosts );
+
+		if ( AOC_WC_DEBUG || WP_DEBUG ) {
+			AOC_WC_Logger::add_debug( wc_print_r( $somecosts, true ) );
+			AOC_WC_Logger::add_debug( wc_print_r( wp_list_pluck(  $somecosts , 'cost' ), true ) );
+		}
+	}
 	$sum = (float) 0.00;
 	$sum = floatval( array_sum( wp_list_pluck(  $somecosts , 'cost' ) ) );
+
+	if ( AOC_WC_DEBUG || WP_DEBUG ) {
+		AOC_WC_Logger::add_debug( "final additional costs:" );
+		AOC_WC_Logger::add_debug( wc_print_r( $sum, true ) );
+	}
 	return $sum;
 }
 
