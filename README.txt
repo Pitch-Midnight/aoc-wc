@@ -4,7 +4,7 @@ Donate link: https://www.theritesites.com
 Tags: Order costs, WooCommerce costs, Additional costs, Reporting
 Requires at least: 4.0
 Requires PHP: 5.6
-Tested up to: 5.4
+Tested up to: 6.5
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -59,6 +59,11 @@ For example: this plugin stores multiple order cost lines with associated labels
 
 
 == Changelog ==
+
+= 1.0.4 =
+
+* Added: WooCommerce High Performance Order Storage Indicator (HPOS)
+* Fixed: Enqueueing assets on new WooCommerce Admin pages
 
 = 1.0.3 =
 

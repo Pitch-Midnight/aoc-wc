@@ -8,40 +8,32 @@
 		"url": "https://www.theritesites.com?"
 	},
 	"license": "GPL-2.0-only",
+	"files": [
+		"assets",
+		"woo-includes",
+		"includes",
+		"build",
+		"languages",
+		"index.php",
+		"cmb2",
+		"additional-order-costs-for-woocommerce.php",
+		"LICENSE.txt",
+		"README.txt",
+		"uninstall.php"
+	],
 	"scripts": {
-		"start-c": "webpack --mode=development --env.NODE_ENV=development --env.LOC=corsair --watch",
-		"start-m": "webpack --mode=development --env.NODE_ENV=development --env.LOC=mac --watch",
-		"build-c": "webpack --mode=production --env.NODE_ENV=production --env.LOC=corsair",
-		"build-m": "webpack --mode=production --env.NODE_ENV=production --env.LOC=mac",
-		"start-m1": "webpack --mode=development --env.NODE_ENV=development --env.LOC=m1 --watch",
-		"build-m1": "webpack --mode=production --env.NODE_ENV=production --env.LOC=m1"
+		"start-c": "wp-scripts build --mode=development --env NODE_ENV=development --env LOC=corsair --watch",
+		"start-m": "wp-scripts build --mode=development --env NODE_ENV=development --env LOC=mac --watch",
+		"build-c": "wp-scripts build --mode=production --env NODE_ENV=production --env LOC=corsair",
+		"build-m": "wp-scripts build --mode=production --env NODE_ENV=production --env LOC=mac",
+		"start-m1": "wp-scripts start --mode=development --env NODE_ENV=development --env LOC=m1 ",
+		"start-m1-nw": "wp-scripts build --mode=development --env NODE_ENV=development --env LOC=m1",
+		"build-m1": "wp-scripts build --mode=production --env NODE_ENV=production --env LOC=m1",
+		"plugin-zip": "wp-scripts plugin-zip"
 	},
 	"devDependencies": {
-		"autoprefixer": "^9.8.4",
-		"babel-core": "^6.2.1",
-		"babel-loader": "^7.1.5",
-		"babel-preset-env": "^1.7.0",
-		"babel-preset-react": "^6.1.18",
-		"browser-sync": "^2.26.7",
-		"browser-sync-webpack-plugin": "^2.2.2",
-		"copy-webpack-plugin": "^4.5.2",
-		"css-loader": "^3.1.0",
-		"mini-css-extract-plugin": "^0.4.5",
-		"optimize-css-assets-webpack-plugin": "^5.0.1",
-		"uglifyjs-webpack-plugin": "^2.0.1",
-		"webpack": "^4.16.5",
-		"webpack-cli": "^3.1.0",
-		"webpack-dev-server": "^3.7.2",
-		"webpack-zip-plugin": "^0.1.6"
-	},
-	"dependencies": {
-		"axios": "^0.18.1",
-		"lodash": "^4.17.10",
-		"react": "^16.4.2",
-		"react-dom": "^16.4.2",
-		"react-redux": "^5.0.7",
-		"react-router-dom": "4.2.2",
-		"redux": "^4.0.0",
-		"redux-promise": "^0.6.0"
+		"@wordpress/scripts": "^27",
+		"copy-webpack-plugin": "^12.0.2",
+		"webpack-cli": "^4.10.0"
 	}
 }
