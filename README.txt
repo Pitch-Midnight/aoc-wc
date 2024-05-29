@@ -9,7 +9,7 @@ Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Whether it's an extra invoice, or a credit from a merchant related to an order. Sometimes you just need a couple extra cost fields for your store's reporting. Dynamically add as many costs to your order as you would like!
+Whether it's an extra invoice, or a credit from a merchant related to an order. Dynamically add as many costs to your order as you would like!
 
 == Description ==
 

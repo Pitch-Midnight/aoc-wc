@@ -65,11 +65,10 @@ class AOC_WC_Admin {
 	public function enqueue_scripts() {
 
 		global $post_type, $pagenow;
-		$admin_page = $_GET['page'];
 
 		if ( ( isset( $_GET['action'] ) && ( $post_type === 'shop_order' && $_GET['action'] === 'edit' ) )
 			|| ( $pagenow === 'post-new.php' && $post_type === 'shop_order' )
-			|| ( $pagenow == 'admin.php' && $admin_page == 'wc-orders' )
+			|| ( isset( $_GET['page'] ) && $pagenow == 'admin.php' && $_GET['page'] == 'wc-orders' )
 		) {
 			$js_file = '';
 			$css_file = '';
