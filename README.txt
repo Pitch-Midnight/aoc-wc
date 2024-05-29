@@ -60,6 +60,10 @@ For example: this plugin stores multiple order cost lines with associated labels
 
 == Changelog ==
 
+= 1.0.5 =
+
+* Fixed: Retrieving saved values sometimes was not working on new WordPress versions
+
 = 1.0.4 =
 
 * Added: WooCommerce High Performance Order Storage Indicator (HPOS)
