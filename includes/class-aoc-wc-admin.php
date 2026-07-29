@@ -115,6 +115,7 @@ class AOC_WC_Admin {
 		$order = wc_get_order( $order_id );
 		$additional_costs = maybe_unserialize( $order->get_meta( '_aoc_wc_additional_costs' ) );
 		if ( AOC_WC_DEBUG || WP_DEBUG ) {
+			AOC_WC_Logger::add_debug( $order_id );
 			AOC_WC_Logger::add_debug( wc_print_r( $additional_costs, true ) );
 		}
 		?>

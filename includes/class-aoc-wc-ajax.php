@@ -56,6 +56,7 @@ class AOC_WC_AJAX {
                 if ( wp_verify_nonce( $_POST['security'], 'wp_rest' ) ) {
                     $new_cost_data = array();
                     $order_id 	   = intval( sanitize_text_field( $_POST['post_id'] ) );
+                    $method        = 'manual'; // Only manual for now, no automated ways of setting this data. Potentially filters?
 
                     // This is reading in an array, sanitize later.
                     $cost_data_agg = $_POST['aoc'];
@@ -79,8 +80,12 @@ class AOC_WC_AJAX {
                             AOC_WC_Logger::add_debug( wc_print_r( $new_cost_data, true ) );
                         }
 
+                        do_action( 'aoc_wc_before_cost_data_stored', $order_id, $new_cost_data, $method );
+
                         $order->update_meta_data( '_aoc_wc_additional_costs', $new_cost_data );
                         $order_ret = $order->save();
+
+                        do_action( 'aoc_wc_after_cost_data_stored', $order_id, $new_cost_data, $method );
 
                         $data['payload'] = array( 'order' => $order_ret, 'cost_data' => $new_cost_data );
                     }
