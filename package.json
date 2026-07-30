@@ -1,7 +1,7 @@
 {
 	"name": "additional-order-costs-for-woocommerce",
 	"title": "Additional Order Costs for WooCommerce",
-	"version": "1.0.0",
+	"version": "1.0.5",
 	"description": "Whether it's an extra invoice, or a credit from a merchant related to an order. Sometimes you just need a couple extra cost fields for your reporting.",
 	"author": {
 		"name": "TheRiteSites",
@@ -22,18 +22,30 @@
 		"uninstall.php"
 	],
 	"scripts": {
-		"start-c": "wp-scripts build --mode=development --env NODE_ENV=development --env LOC=corsair --watch",
-		"start-m": "wp-scripts build --mode=development --env NODE_ENV=development --env LOC=mac --watch",
-		"build-c": "wp-scripts build --mode=production --env NODE_ENV=production --env LOC=corsair",
-		"build-m": "wp-scripts build --mode=production --env NODE_ENV=production --env LOC=mac",
-		"start-m1": "wp-scripts start --mode=development --env NODE_ENV=development --env LOC=m1 ",
-		"start-m1-nw": "wp-scripts build --mode=development --env NODE_ENV=development --env LOC=m1",
-		"build-m1": "wp-scripts build --mode=production --env NODE_ENV=production --env LOC=m1",
-		"plugin-zip": "wp-scripts plugin-zip"
+		"dev": "wp-scripts start --mode=development --env LOC=m1",
+		"build": "npm run clean && wp-scripts build --mode=production",
+		"package": "npm run build && node ../trs-package.js",
+		"deploy": "npm run package && node ../trs-deliver.js m1",
+		"clean": "rm -rf build/* zip_files/*"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^27",
-		"copy-webpack-plugin": "^12.0.2",
-		"webpack-cli": "^4.10.0"
+		"@wordpress/scripts": "^34.0.0",
+		"copy-webpack-plugin": "^14"
+	},
+	"trsPackage": {
+		"slug": "additional-order-costs-for-woocommerce",
+		"include": [
+			"assets",
+			"cmb2",
+			"build",
+			"languages",
+			"includes",
+			"woo-includes",
+			"README.txt",
+			"LICENSE.txt",
+			"additional-order-costs-for-woocommerce.php",
+			"index.php",
+			"uninstall.php"
+		]
 	}
 }
