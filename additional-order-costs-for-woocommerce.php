@@ -16,14 +16,14 @@
  * Plugin Name:       Additional Order Costs for WooCommerce
  * Plugin URI:        https://www.theritesites.com/plugins/additional-order-costs
  * Description:       Whether it's an extra invoice, or a credit from a merchant related to an order. Sometimes you just need a couple extra cost fields for your reporting.
- * Version:           1.0.4
+ * Version:           1.0.5
  * Author:            TheRiteSites
  * Author URI:        https://www.theritesites.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       additional-order-costs-for-woocommerce
  * Domain Path:       /languages
- * WC tested up to: 6.7
+ * WC tested up to: 8.9
  * WC requires at least: 2.6
  */
 
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Current plugin version.
  */
-define( 'AOC_WC_VERSION', '1.0.4' );
+define( 'AOC_WC_VERSION', '1.0.5' );
 
 define( 'AOC_WC_LICENSE_PAGE', 'the_rite_plugins_settings' );
 
@@ -50,6 +50,12 @@ if ( file_exists( __DIR__ . '/includes/class-logger.php' ) ) {
 if ( ! function_exists( 'is_woocommerce_active' ) ) {
 	require_once( 'woo-includes/woo-functions.php' );
 }
+
+add_action( 'before_woocommerce_init', function() {
+	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	}
+} );
 
 /**
  * The code that runs during plugin activation.

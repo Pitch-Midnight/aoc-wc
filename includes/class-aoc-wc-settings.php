@@ -57,8 +57,15 @@ class AOC_WC_Settings {
 		$this->plugin = $plugin;
 		$this->hooks();
 
-		// Set our title.
-		$this->title = esc_attr__( 'The Rite Plugins Settings', 'additional-order-costs-for-woocommerce' );
+		// The translated title assignment that used to be here is REMOVED.
+		// It was the sole cause of WordPress 6.7's
+		// "_load_textdomain_just_in_time ... triggered too early" notice for this
+		// plugin: this constructor runs during plugin construction, well before
+		// init, and calling esc_attr__() there forces WordPress to load the
+		// textdomain just in time. Confirmed by backtrace on wp56tester.
+		//
+		// It was also dead: $this->title was assigned and never read anywhere in
+		// this plugin. If a title is ever needed, set it on init or later.
 	}
 
 	/**

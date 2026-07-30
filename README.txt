@@ -4,12 +4,12 @@ Donate link: https://www.theritesites.com
 Tags: Order costs, WooCommerce costs, Additional costs, Reporting
 Requires at least: 4.0
 Requires PHP: 5.6
-Tested up to: 5.4
+Tested up to: 6.5
 Stable tag: trunk
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Whether it's an extra invoice, or a credit from a merchant related to an order. Sometimes you just need a couple extra cost fields for your store's reporting. Dynamically add as many costs to your order as you would like!
+Whether it's an extra invoice, or a credit from a merchant related to an order. Dynamically add as many costs to your order as you would like!
 
 == Description ==
 
@@ -59,6 +59,15 @@ For example: this plugin stores multiple order cost lines with associated labels
 
 
 == Changelog ==
+
+= 1.0.5 =
+
+* Fixed: Retrieving saved values sometimes was not working on new WordPress versions
+
+= 1.0.4 =
+
+* Added: WooCommerce High Performance Order Storage Indicator (HPOS)
+* Fixed: Enqueueing assets on new WooCommerce Admin pages
 
 = 1.0.3 =
 

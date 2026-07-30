@@ -68,6 +68,7 @@ class AOC_WC_Admin {
 
 		if ( ( isset( $_GET['action'] ) && ( $post_type === 'shop_order' && $_GET['action'] === 'edit' ) )
 			|| ( $pagenow === 'post-new.php' && $post_type === 'shop_order' )
+			|| ( isset( $_GET['page'] ) && $pagenow == 'admin.php' && $_GET['page'] == 'wc-orders' )
 		) {
 			$js_file = '';
 			$css_file = '';
@@ -75,6 +76,8 @@ class AOC_WC_Admin {
 			
 			if ( file_exists( $path . '/assets/js/aoc-wc-admin.min.js' ) && !( WP_DEBUG ) ) {
 				$js_file =  plugins_url( '/assets/js/aoc-wc-admin.min.js', dirname( __FILE__ ) );
+			} else if ( file_exists( $path . '/build/aoc-wc-admin.js' ) && !( WP_DEBUG ) ) {
+				$js_file =  plugins_url( '/build/aoc-wc-admin.js', dirname( __FILE__ ) );
 			}
 			else
 				$js_file =  plugins_url( '/assets/js/aoc-wc-admin.js', dirname( __FILE__ ) );
@@ -114,6 +117,13 @@ class AOC_WC_Admin {
 		} 
 		$order = wc_get_order( $order_id );
 		$additional_costs = maybe_unserialize( $order->get_meta( '_aoc_wc_additional_costs' ) );
+		if ( gettype( $additional_costs ) == 'string' ) {
+			$additional_costs = json_decode( $additional_costs );
+		} else {
+			if ( AOC_WC_DEBUG || WP_DEBUG ) {
+				AOC_WC_Logger::add_debug( "unknown type in additional costs: " . gettype( $additional_costs ) );
+			}
+		}
 		if ( AOC_WC_DEBUG || WP_DEBUG ) {
 			AOC_WC_Logger::add_debug( 'Displaying Order ID: ' . $order_id );
 			AOC_WC_Logger::add_debug( wc_print_r( $additional_costs, true ) );
@@ -136,16 +146,25 @@ class AOC_WC_Admin {
 		for ( $i = 0; $i < $default; $i++ ) {
 			$current_label = '';
 			$current_cost = 0.0;
-			if ( is_array( $additional_costs ) && isset( $additional_costs[ $i ] ) ) {
-				if ( isset( $additional_costs[ $i ]['label'] ) ) {
-					$current_label = $additional_costs[ $i ]['label'];
-				}
-				if ( isset( $additional_costs[ $i ]['cost'] ) ) {
-					$current_cost = $additional_costs[ $i ]['cost'];
+			if ( is_array( $additional_costs )  ) {
+				if ( isset( $additional_costs[ $i ] ) ) {
+					if ( isset( $additional_costs[ $i ]->label ) ) {
+						$current_label = $additional_costs[ $i ]->label;
+					} else if ( isset( $additional_costs[ $i ]['label'] ) ) {
+						$current_label = $additional_costs[ $i ]->label;
+					} else {
+						$current_label = 'dead';
+					}
+					if ( isset( $additional_costs[ $i ]->cost ) ) {
+						$current_cost = $additional_costs[ $i ]->cost;
+					} else if ( isset( $additional_costs[ $i ]['cost'] ) ) {
+						$current_cost = $additional_costs[ $i ]->label;
+					} else {
+						$current_cost = 1.0;
+					}
 				}
 			}
 			$hidden = ( ! empty( $current_cost ) && ! empty( $current_label ) ) ? '' : ' display:none;';
-
 
 			?>
 				<tr class="aoc-row" style="<?php esc_attr_e( $hidden ) ?>" >
