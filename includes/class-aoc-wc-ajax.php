@@ -53,7 +53,10 @@ class AOC_WC_AJAX {
 
         if ( isset( $_POST['post_id'] ) && isset( $_POST['aoc'] ) && isset( $_POST['security'] ) ) {
             try {
-                if ( wp_verify_nonce( $_POST['security'], 'wp_rest' ) ) {
+                if ( check_ajax_referer( 'wp_rest', 'security', false )
+                    && is_user_logged_in()
+                    && current_user_can( 'manage_woocommerce' )
+                ) {
                     $new_cost_data = array();
                     $order_id 	   = intval( sanitize_text_field( $_POST['post_id'] ) );
                     $method        = 'manual'; // Only manual for now, no automated ways of setting this data. Potentially filters?
@@ -93,11 +96,17 @@ class AOC_WC_AJAX {
                     }
                 }
                 else {
-                    return new WP_Error( 'save_additional_costs_error', 'Validation failed.', array( 'status' => 500 ) );
+                    // A `return` here never reaches the client - this callback's
+                    // only exit is wp_send_json( $data ) at the bottom, so a
+                    // rejected request previously got a silent, empty 200.
+                    // Route the error through $data instead.
+                    $data['success'] = false;
+                    $data['error']   = 'Validation failed.';
                 }
 
             } catch ( Exception $e ) {
-                return new WP_Error('add_additional_costs_error', $e->getMessage(), array( 'status' => 500 ) );
+                $data['success'] = false;
+                $data['error']   = $e->getMessage();
             }
         }
         else {
