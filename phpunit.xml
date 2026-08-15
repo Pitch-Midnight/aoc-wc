@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	PHPUnit configuration for aoc-wc (Additional Order Costs for WooCommerce).
+
+	The suite needs the WordPress test library, a MySQL database and a
+	WooCommerce to load against. Run bin/setup-tests.sh once, then
+	`composer test`. Mirrors wc-net-profit/phpunit.xml - same shape, this
+	plugin's name substituted.
+
+	beStrictAboutTestsThatDoNotTestAnything is on deliberately. The one test
+	this plugin had before (tests/test-sample.php) was an assertTrue( true )
+	placeholder that had never been touched since the plugin scaffold
+	generated it; a suite that cannot notice that is not protecting anything.
+-->
+<phpunit
+	bootstrap="tests/bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	failOnWarning="true"
+	failOnRisky="true"
+	>
+	<testsuites>
+		<testsuite name="aoc-wc">
+			<directory suffix=".php">./tests/unit-tests/</directory>
+		</testsuite>
+	</testsuites>
+</phpunit>

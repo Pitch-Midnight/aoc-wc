@@ -4,3 +4,9 @@ node_modules
 additional-order-costs-for-woocommerce
 additional-order-costs-for-woocommerce.zip
 build
+
+# Test tooling. composer.lock is deliberately NOT ignored - commit it for
+# reproducible installs, same convention as pm-license-server/wc-net-profit.
+vendor/
+.phpunit.result.cache
+.phpunit.cache/
