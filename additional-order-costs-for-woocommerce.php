@@ -16,7 +16,7 @@
  * Plugin Name:       Additional Order Costs for WooCommerce
  * Plugin URI:        https://www.theritesites.com/plugins/additional-order-costs
  * Description:       Whether it's an extra invoice, or a credit from a merchant related to an order. Sometimes you just need a couple extra cost fields for your reporting.
- * Version:           1.0.5
+ * Version:           1.0.6
  * Author:            TheRiteSites
  * Author URI:        https://www.theritesites.com
  * License:           GPL-2.0+
