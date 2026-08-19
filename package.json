@@ -1,7 +1,7 @@
 {
 	"name": "additional-order-costs-for-woocommerce",
 	"title": "Additional Order Costs for WooCommerce",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Whether it's an extra invoice, or a credit from a merchant related to an order. Sometimes you just need a couple extra cost fields for your reporting.",
 	"author": {
 		"name": "TheRiteSites",

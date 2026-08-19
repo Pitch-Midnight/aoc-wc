@@ -60,6 +60,16 @@ For example: this plugin stores multiple order cost lines with associated labels
 
 == Changelog ==
 
+= 1.0.6 =
+
+* Security fix: the order-costs save handler checked only a nonce, not whether the
+  requester was a logged-in user with store-management permission. Now requires
+  both, matching the pattern already used elsewhere in the plugin suite.
+* Fixed: a rejected or failed save request returned a silent, empty success
+  response instead of reporting the error back to the browser.
+* Fixed: a WordPress 6.7 notice ("_load_textdomain_just_in_time... triggered too
+  early") caused by loading translations during plugin construction.
+
 = 1.0.5 =
 
 * Fixed: Retrieving saved values sometimes was not working on new WordPress versions
