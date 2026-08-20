@@ -44,7 +44,7 @@ if [ -z "$DB_NAME" ] || [ -z "$DB_USER" ]; then
 fi
 
 WP_TESTS_DIR=${WP_TESTS_DIR-/tmp/wordpress-tests-lib}
-WP_CORE_DIR=${WP_CORE_DIR-/tmp/wordpress}
+WP_CORE_DIR=${WP_CORE_DIR-/tmp/wordpress/}
 
 # Where to find a WooCommerce to borrow. Override WC_SOURCE to point elsewhere.
 WC_SOURCE=${WC_SOURCE:-$HOME/mac-sites/wp56tester/wp-content/plugins/woocommerce}
