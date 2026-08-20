@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Current plugin version.
  */
-define( 'AOC_WC_VERSION', '1.0.5' );
+define( 'AOC_WC_VERSION', '1.0.6' );
 
 define( 'AOC_WC_LICENSE_PAGE', 'the_rite_plugins_settings' );
 
