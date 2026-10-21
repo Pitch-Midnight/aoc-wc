@@ -29,7 +29,7 @@
 		"clean": "rm -rf build/* zip_files/*"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^34.0.0",
+		"@wordpress/scripts": "^37.0.0",
 		"copy-webpack-plugin": "^14"
 	},
 	"trsPackage": {
